@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+
+import {Route} from "react-router-dom";
+import DefaultHOC  from "./HOC/Default.HOC";
+import MovieHOC from "./HOC/Movie.HOC";
+
+//Pages
+import HomePage from "./pages/home.page";
+import Movie from "./pages/Movie.page";
+import Plays from "./pages/plays.page";
+
+// Import css files
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    //exact componrnt is used to render that particular page only 
+     <>
+      <DefaultHOC  path="/" exact component={HomePage}/>
+      <MovieHOC path="/movie/:id" exact component={Movie}/>
+      <DefaultHOC  path="/plays" exact component={Plays}/>
+
+
+      
+     </>
+    
   );
 }
 
