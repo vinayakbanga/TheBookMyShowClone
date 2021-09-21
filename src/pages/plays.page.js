@@ -5,8 +5,8 @@ import PlaysFilter from "../components/PlaysFilters/PlaysFilters.component";
 const Plays = () => {
 return (
 <>
-<div className="container mx-auto px-4">
-   <div className="w-full lg:flex lg:flex-row-reverse">
+<div className="container mx-auto px-4 my-5">
+   <div className="w-full flex flex-col-reverse lg:flex lg:flex-row-reverse">
       
         <div className="lg:w-8/12">
          <h2 className="text-2xl font-bold mb-4">Plays in Bhubaneswar</h2>
@@ -71,7 +71,7 @@ return (
       
         </div>
 
-       <div className="lg:w-1/4">
+       <div className="lg:w-1/4 ">
         <h2 className="text-2xl font-bold mb-4">Filters</h2>
         <div>
         
