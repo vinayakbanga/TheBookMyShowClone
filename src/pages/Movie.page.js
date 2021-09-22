@@ -4,6 +4,25 @@ import {BiCameraMovie} from "react-icons/bi";
 // import PosterSlider from "../components/PosterSlider/PosterSlider.component";
 import CrewCircle from "../components/castcarousel/crewcircle";
 
+const launchRazorPay = () => {
+   let options = {
+     key: "rzp_test_UN92cpW1fZc7mE",
+     amount: 500*100,
+     currency: "INR",
+     name: "Book My Show Clone",
+     description: "Movie Purchase on Rental",
+     image: "https://i.ibb.co/zPBYW3H/imgbin-bookmyshow-office-android-ticket-png.png",
+     handler: () => {
+       alert("Payment Done")
+     },
+     theme: {color: "#c4242d"}
+   };
+   let rzp = new window.Razorpay(options);
+   rzp.open();
+ };
+
+
+
 const  Movie = () => {
     return (
     <>
@@ -38,6 +57,9 @@ const  Movie = () => {
 
 
        </div>
+       <button onClick={launchRazorPay} class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-8 rounded">
+  Book Tickets
+</button>
 
     
        
