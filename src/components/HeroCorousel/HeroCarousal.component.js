@@ -1,7 +1,9 @@
 import React , {useState, useEffect} from "react";
+import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 
 import HeroSlider from "react-slick";
 import axios from "axios";
+
 
 //component
 import { NextArrow,PrevArrow } from "./Arrows.component";
@@ -34,8 +36,22 @@ const HeroCarousal = () => {
     slidesToScroll: 1,
     centerPadding: "300px",
     infinite: true,
-    nextArrow: <NextArrow className ="bg-opacity-50"/>,
-    prevArrow:<PrevArrow/>
+    // nextArrow: <NextArrow className ="bg-opacity-50"/>,
+    // prevArrow:<PrevArrow/>
+    nextArrow: (
+      <div>
+        <div className='next-slick-arrow bg-black   bg-opacity-50 backdrop-filter rounded-full  absolute'>
+          <BiChevronRight/>
+        </div>
+      </div>
+    ),
+    prevArrow: (
+      <div>
+        <div className='prev-slick-arrow bg-black  bg-opacity-50 backdrop-filter rounded-full  absolute'>
+          <BiChevronLeft/>
+        </div>
+      </div>
+    )
   }
 
   const settings = {
@@ -45,8 +61,22 @@ const HeroCarousal = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <NextArrow/>,
-    prevArrow:<PrevArrow/>
+    // nextArrow: <NextArrow/>,
+    // prevArrow:<PrevArrow/>
+    nextArrow: (
+      <div>
+        <div className='next-slick-arrow bg-black   bg-opacity-50 backdrop-filter rounded-full  absolute'>
+          <BiChevronRight/>
+        </div>
+      </div>
+    ),
+    prevArrow: (
+      <div>
+        <div className='prev-slick-arrow bg-black  bg-opacity-50 backdrop-filter rounded-full  absolute'>
+          <BiChevronLeft/>
+        </div>
+      </div>
+    )
   };
 
 

@@ -1,5 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
+import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 
 const EntertainmentCard =(props) => {
     return(
@@ -40,7 +41,21 @@ const EntertainmentCardSlider =()=>{
     autoplay :false,
     slidesToShow: 4,
     slidesToScroll: 4,
-    InitialSlide: 0
+    InitialSlide: 0,
+    nextArrow: (
+        <div>
+          <div className='next-slick-arrow bg-black   bg-opacity-50 backdrop-filter rounded-full  absolute'>
+            <BiChevronRight/>
+          </div>
+        </div>
+      ),
+      prevArrow: (
+        <div>
+          <div className='prev-slick-arrow bg-black  bg-opacity-50 backdrop-filter rounded-full  absolute'>
+            <BiChevronLeft/>
+          </div>
+        </div>
+      )
     
   }
 
