@@ -2,14 +2,18 @@
 import React, {useState,useEffect} from "react";
 import axios from "axios";
 import EntertainmentCardSlider from "../components/EntertainmentCarousel/Entertainment.carousel";
-import  Premier  from "../components/premier/premier.component";
+// import  Premier  from "../components/premier/premier.component";
 import PosterSlider from "../components/PosterSlider/PosterSlider.component";
-import TempPosters from "../config/TempPosters.config"
+// import TempPosters from "../config/TempPosters.config"
+import {ImFacebook2} from "react-icons/im";
+import {GrInstagram} from "react-icons/gr";
+import {AiOutlineTwitter, AiFillYoutube, AiFillLinkedin} from "react-icons/ai";
+
 const HomePage =()=> {
 
   const [popularMovies,setPopularMovies] = useState([]);
-  const [latestMovies, setLatestMovies] = useState([]);
-  const [recommendedMovies, setRecommendedMovies] = useState([]);
+  
+  
   const [premierMovies, setPremierMovies] = useState([]);
   const [onlineStreamEvents, setOnlineStreamEvents] = useState([]);
    useEffect(() => {
@@ -40,14 +44,7 @@ const HomePage =()=> {
         requestUpcomingMovies();
       }, []);
     
-      useEffect(() => {
-        const requestLatestMovies = async () => {
-          const getLatestMovies = await axios.get("/movie/latest");
-          setLatestMovies(getLatestMovies.data.results);
-        };
-        requestLatestMovies();
-      }, []);
-    
+     
 
 
     return(
@@ -87,6 +84,19 @@ const HomePage =()=> {
           isdark={false}
           />
       </div>
+      <footer className=" w-auto h-auto bg-black bg-opacity-75 hidden lg:block fixed-bottom">
+      <div class="  flex flex-col justify-center items-center  ">
+      
+          <ul class=" flex flex-row gap-5 p-5  text-3xl  text-gray-400">
+             <li><a href="https://www.facebook.com/BookMyShowIN"><ImFacebook2/></a></li>
+             <li><a href="https://www.instagram.com/bookmyshowin/"><GrInstagram/></a></li>
+            <li><a href="https://www.youtube.com/user/BookMyShow/featured "><AiFillYoutube/></a></li>
+             <li><a href="https://www.linkedin.com/company/bookmyshow/"><AiFillLinkedin/></a></li>
+             <li><a href="https://twitter.com/BookMyShow/"><AiOutlineTwitter/></a></li>
+           </ul>
+           <h3 className = "text-gray-400 text-xl p-2 ">Book My Show</h3>
+       </div>
+      </footer>
         </>
         
         
