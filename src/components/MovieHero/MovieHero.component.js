@@ -3,6 +3,8 @@ import React from 'react';
 import { BiChevronRight, BiShareAlt } from 'react-icons/bi';
 import { AiTwotoneHeart } from 'react-icons/ai';
 import MovieInfo from './MovieInfo.component';
+
+
 const MovieHero = () => {
   return (
     <>

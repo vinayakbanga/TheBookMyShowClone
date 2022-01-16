@@ -72,8 +72,12 @@ return (
       
         </div>
         <div className='lg:w-1/4 m-9 bg-white text-xl gap-4'>
+
+        
+
+
             <h2 className='text-2xl font-bold mb-4'>Filters</h2>
-            <div className='mb-4 p-2 '>
+            <div className='mb-4 '>
               <PlaysFilter
                 title='Date'
                 tags={['Today', 'Tomorrow', 'This weekend']}

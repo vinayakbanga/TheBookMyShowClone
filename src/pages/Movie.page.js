@@ -3,6 +3,9 @@ import MovieHero from "../components/MovieHero/MovieHero.component";
 import {BiCameraMovie} from "react-icons/bi";
 // import PosterSlider from "../components/PosterSlider/PosterSlider.component";
 import CrewCircle from "../components/castcarousel/crewcircle";
+import PosterSlider from "../components/PosterSlider/PosterSlider.component";
+import TempPosters from "../config/TempPosters.config"
+
 
 const launchRazorPay = () => {
    let options = {
@@ -25,7 +28,9 @@ const launchRazorPay = () => {
 
 const  Movie = () => {
     return (
+     
     <>
+   
     <MovieHero/>
         <div className="my-12 container px-4 lg:w-2/3 lg:ml-20">
             <div className="flex flex-col items-start gap-3">
@@ -62,8 +67,11 @@ const  Movie = () => {
                 </div>
 
             </div>
+            <div className="my-8 " >
+                <hr />
+            </div>
             <div>
-            <h2 className="text-gray-800 font-bold text-2xl py-5">Cast and crew</h2>
+            <h2 className="text-gray-800 font-bold text-2xl ">Cast and crew</h2>
 
        <div className="flex flex-wrap gap-4 ">
        <CrewCircle image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/simu-liu-2006167-13-05-2021-04-13-21.jpg"
@@ -88,6 +96,15 @@ const  Movie = () => {
            role="test"
        />
 
+
+       </div>
+       <div className="my-8">
+       
+          <PosterSlider images={TempPosters}
+          title="You Might also like"
+          isdark={false}
+          />
+      
 
        </div>
        </div>
