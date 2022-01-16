@@ -3,26 +3,15 @@ import React from "react";
 const crewcircle =(props)=>{
     return(
         <>
-        <div className="flex flex-col items-start gap-2 px-3">
-            <div className="h-80">
-            <img src={props.src} alt={props.title} className="w-24 h-24 rounded-full"/>
-
+        <div className="my-5 flex flex-col items-center" >
+            <div className="w-32 h-32">
+                <img src={props.image} alt="crew man" 
+                className="w-full h-full rounded-full"/>
             </div>
-            <h3
-            className={
-                `text-lg font-bold text-center  ${
-                    props.isdark ? "text-white" : "text-gray-700"
-
-                }`
-            }>{props.title}</h3>
-            <p className={
-                `text-sm font-bold text-center ${
-                    props.isdark ? "text-white" : "text-gray-700"
-
-                }`
-            }>{props.subtitle}</p>
+            <h1 className="text-lg  text-gray-800">{props.castName}</h1>
+            <h5 className="text-sm  text-gray-400">{props.role}</h5>
         </div>
-
+    
 
         </>
     )
