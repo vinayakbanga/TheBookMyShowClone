@@ -17,7 +17,7 @@ const PlaysFilters=(props)=> {
         {
             props.tags.map((tag)=>(
                 <>
-                <div className="border-2 border-gray-400 p-3">
+                <div className="border-2 border-gray-400 p-1">
                 <span className="text-red-600">{tag}</span>
                 </div>
                 </>
