@@ -7,7 +7,7 @@ const MovieProvider =({ children }) => {
 
     const [movie, setMovie] = useState({
         id:0,
-        orignal_title:" ",
+        original_title:" ",
         overview : " ",
         backdrop_path: " ",
         poster_path:" ",
