@@ -11,6 +11,7 @@ import Slider from "react-slick";
 const Plays = () => {
 
   const [popularShows,setPopularShows] = useState([]);
+  const [topShows,setTopShows] = useState([]);
   useEffect(() => {
     const requestPopularShows = async ()=>{
         const getPopularShows =await axios.get("/tv/popular");
@@ -20,6 +21,16 @@ const Plays = () => {
 
 
  },[] );
+
+ useEffect(() => {
+  const requestTopShows = async ()=>{
+      const getTopShows =await axios.get("/tv/top_rated");
+      setTopShows(getTopShows.data.results)
+  };
+  requestTopShows();
+
+
+},[] );
  const settings = {
   infinite: false,
   speed: 500,
@@ -60,73 +71,45 @@ return (
    <div className="w-full flex flex-col-reverse lg:flex lg:flex-row-reverse">
       
         <div className="lg:w-8/12">
-         <h2 className="text-2xl font-bold mb-4">Plays in Bhubaneswar</h2>
-        <div className="flex flex-wrap">
-         <div className="w-1/2 md:w-1/3 my-3 lg:w-1/4">
+         <h2 className="text-2xl font-bold mb-4">Online Series</h2>
+        
             <Slider {...settings}>
             {popularShows.map((showdata)=>(
               
               <PlaysPoster
               image={`https://image.tmdb.org/t/p/original${showdata.poster_path}`}
               title={showdata.original_name}
-              subtitle="Tamil ₹300"
+              subtitle={showdata.original_language } 
+              />
+
+            ))}
+            </Slider>
+
+            <Slider {...settings}>
+            {topShows.map((Topshowdata)=>(
+              
+              <PlaysPoster
+              image={`https://image.tmdb.org/t/p/original${Topshowdata.poster_path}`}
+              title={Topshowdata.original_name}
+              subtitle={Topshowdata.original_language } 
+              />
+
+            ))}
+            </Slider>
+            <Slider {...settings}>
+            {popularShows.map((showdata)=>(
+              
+              <PlaysPoster
+              image={`https://image.tmdb.org/t/p/original${showdata.poster_path}`}
+              title={showdata.original_name}
+              subtitle={showdata.original_language } 
               />
 
             ))}
             </Slider>
             
             
-         </div>
-         {/* <div className="w-1/2 md:w-1/3 my-3 lg:w-1/4">
-            <PlaysPoster
-               src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAyMyBPY3Qgb253YXJkcw%3D%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00314369-yhhpvqsaab-portrait.jpg"
-               title="Tvk Cultural presents Ponniyin Selvan"
-               subtitle="Tamil ₹300"
-               />
-         </div>
-         <div className="w-1/2 md:w-1/3 my-3 lg:w-1/4">
-            <PlaysPoster
-               src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAyMyBPY3Qgb253YXJkcw%3D%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00314369-yhhpvqsaab-portrait.jpg"
-               title="Tvk Cultural presents Ponniyin Selvan"
-               subtitle="Tamil ₹300"
-               />
-         </div>
-         <div className="w-1/2 md:w-1/3 my-3 lg:w-1/4">
-            <PlaysPoster
-               src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAyMyBPY3Qgb253YXJkcw%3D%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00314369-yhhpvqsaab-portrait.jpg"
-               title="Tvk Cultural presents Ponniyin Selvan"
-               subtitle="Tamil ₹300"
-               />
-         </div>
-         <div className="w-1/2 md:w-1/3 my-3 lg:w-1/4">
-            <PlaysPoster
-               src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAyMyBPY3Qgb253YXJkcw%3D%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00314369-yhhpvqsaab-portrait.jpg"
-               title="Tvk Cultural presents Ponniyin Selvan"
-               subtitle="Tamil ₹300"
-               />
-         </div>
-         <div className="w-1/2 md:w-1/3 my-3 lg:w-1/4">
-            <PlaysPoster
-               src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAyMyBPY3Qgb253YXJkcw%3D%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00314369-yhhpvqsaab-portrait.jpg"
-               title="Tvk Cultural presents Ponniyin Selvan"
-               subtitle="Tamil ₹300"
-               />
-         </div>
-         <div className="w-1/2 md:w-1/3 my-3 lg:w-1/4">
-            <PlaysPoster
-               src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAyMyBPY3Qgb253YXJkcw%3D%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00314369-yhhpvqsaab-portrait.jpg"
-               title="Tvk Cultural presents Ponniyin Selvan"
-               subtitle="Tamil ₹300"
-               />
-         </div>
-         <div className="w-1/2 md:w-1/3 my-3 lg:w-1/4">
-            <PlaysPoster
-               src="https://in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:ote-U2F0LCAyMyBPY3Qgb253YXJkcw%3D%3D,ots-29,otc-FFFFFF,oy-612,ox-24/et00314369-yhhpvqsaab-portrait.jpg"
-               title="Tvk Cultural presents Ponniyin Selvan"
-               subtitle="Tamil ₹300"
-               />
-         </div> */}
-      </div>
+            
       
         </div>
         <div className='lg:w-1/4 m-9 bg-white text-xl gap-4'>
