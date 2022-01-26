@@ -7,8 +7,8 @@ const PlaysPoster = (props) => {
         <div className='flex flex-col items-start gap-2 px-3'>
           <div className='h-80'>
             <img
-              src={props.src}
-              alt={props.original_title}
+              src={props.image}
+              alt="poster"
               className='w-full h-full rounded-xl'
             />   
           </div>
