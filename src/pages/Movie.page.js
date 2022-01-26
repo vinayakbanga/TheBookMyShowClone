@@ -1,32 +1,127 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MovieHero from "../components/MovieHero/MovieHero.component";
 import {BiCameraMovie} from "react-icons/bi";
+import Slider from "react-slick"
 // import PosterSlider from "../components/PosterSlider/PosterSlider.component";
 import CrewCircle from "../components/castcarousel/crewcircle";
 import PosterSlider from "../components/PosterSlider/PosterSlider.component";
 import TempPosters from "../config/TempPosters.config"
 
+//context
+import { MovieCOntext } from "../context/movie.context";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import axios from "axios";
 
-const launchRazorPay = () => {
-   let options = {
-     key: "rzp_test_UN92cpW1fZc7mE",
-     amount: 500*100,
-     currency: "INR",
-     name: "Book My Show Clone",
-     description: "Movie Purchase on Rental",
-     image: "https://i.ibb.co/zPBYW3H/imgbin-bookmyshow-office-android-ticket-png.png",
-     handler: () => {
-       alert("Payment Done")
-     },
-     theme: {color: "#c4242d"}
-   };
-   let rzp = new window.Razorpay(options);
-   rzp.open();
- };
+
+
+
 
 
 
 const  Movie = () => {
+  const {id} = useParams();
+ const { movie }= useContext(MovieCOntext)
+ const [cast ,setCast] = useState([]);
+ const [similarMovies ,setSimilarMovies] = useState([]);
+ const [recommended ,setRecommended] = useState([]);
+
+ useEffect(()=>{
+   const requestCast =async()=>{
+     const getCast =await axios.get(`/movie/${id}/credits`);
+     setCast(getCast.data.cast)
+   };
+   requestCast();
+ },[id])
+
+ 
+ useEffect(() => {
+  const requestSimilarMovies = async () => {
+    const getSimilarMovies = await axios.get(`/movie/${id}/similar`);
+    setSimilarMovies(getSimilarMovies.data.results);
+  };
+
+  requestSimilarMovies();
+}, [id]);
+
+useEffect(() => {
+  const requestRecommendedMovies = async () => {
+    const getRecommendedMovies = await axios.get(
+      `/movie/${id}/recommendations`
+    );
+    setRecommended(getRecommendedMovies.data.results);
+  };
+
+  requestRecommendedMovies();
+}, [id]);
+
+
+
+
+ const settings = {
+  infinite: false,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  initialSlide: 0,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
+const settingsCast = {
+  infinite: false,
+  speed: 500,
+  slidesToShow: 6,
+  slidesToScroll: 4,
+  initialSlide: 0,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 3,
+        infinite: true,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 5,
+        slidesToScroll: 2,
+        initialSlide: 2,
+      },
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
+
     return (
      
     <>
@@ -35,7 +130,7 @@ const  Movie = () => {
         <div className="my-12 container px-4 lg:w-2/3 lg:ml-20">
             <div className="flex flex-col items-start gap-3">
                <h2 className="text-gray-800 font-extrabold text-2xl">About the movie</h2>
-               <p className="text-black "> Shang-Chi and The Legend of The Ten Rings features Simu Liu as Shang-Chi, who must confront the past he thought he left behind when he is drawn into the web of the mysterious Ten Rings organization. The film is directed by Destin Daniel Cretton and produced by Kevin Feige and Jonathan Schwartz.</p>
+               <p className="text-black "> {movie.overview}</p>
             </div>
             <div className="my-8 " >
                 <hr />
@@ -73,35 +168,36 @@ const  Movie = () => {
             <div>
             <h2 className="text-gray-800 font-bold text-2xl ">Cast and crew</h2>
 
-       <div className="flex flex-wrap gap-4 ">
-       <CrewCircle image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/simu-liu-2006167-13-05-2021-04-13-21.jpg"
-           
-           castName="Henry Cavil"
-           role="test"
-       />
+       {/* <div className="flex flex-wrap gap-4 "> */}
+         <Slider {...settingsCast}>
+         {cast.map((castdata)=>(
 
-        <CrewCircle image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/simu-liu-2006167-13-05-2021-04-13-21.jpg"
+       <CrewCircle image={`https://image.tmdb.org/t/p/original${castdata.profile_path}`}
            
-           castName="Henry Cavil"
-           role="test"
-       />
-       <CrewCircle image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/simu-liu-2006167-13-05-2021-04-13-21.jpg"
-           
-           castName="Henry Cavil"
-           role="test"
-       />
-       <CrewCircle image="https://in.bmscdn.com/iedb/artist/images/website/poster/large/simu-liu-2006167-13-05-2021-04-13-21.jpg"
-           
-           castName="Henry Cavil"
-           role="test"
-       />
+           castName={castdata.original_name}
+           role={castdata.character}
+           />
+           ))}
+           </Slider>
+         
 
+        
 
-       </div>
+       {/* </div> */}
        <div className="my-8">
        
-          <PosterSlider images={TempPosters}
+          <PosterSlider 
+          config={settings}
+          images={similarMovies}
+
           title="You Might also like"
+          isdark={false}
+          />
+          <PosterSlider 
+          config={settings}
+          images={recommended}
+
+          title="Recommended Movies"
           isdark={false}
           />
       
@@ -109,9 +205,9 @@ const  Movie = () => {
        </div>
        </div>
 
-       <button onClick={launchRazorPay} class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-8 rounded">
+       {/* <button onClick={launchRazorPay} class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-8 rounded">
   Book Tickets
-</button>
+</button> */}
 
     
        
