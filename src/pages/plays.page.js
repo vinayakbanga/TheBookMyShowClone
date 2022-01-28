@@ -85,6 +85,8 @@ return (
             ))}
             </Slider>
 
+            <h2 className="text-2xl font-bold mb-4">Top Shows</h2>
+
             <Slider {...settings}>
             {topShows.map((Topshowdata)=>(
               
