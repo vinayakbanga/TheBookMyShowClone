@@ -8,6 +8,7 @@ import MovieNavbar from "../components/Navbar/movieNavbar.component"
 // /context 
 
 import { MovieCOntext } from "../context/movie.context";
+import Links from "../components/Linking/linking.component";
 
 
 const MovieLayout = (props)=>{
@@ -31,6 +32,7 @@ const MovieLayout = (props)=>{
     return (
         <>
        <MovieNavbar/>
+       <Links/>
        
        {props.children};
        </>
